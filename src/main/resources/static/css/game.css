@@ -1,0 +1,35 @@
+body{
+ background-image: url("https://wallpaperaccess.com/full/948963.jpg");
+}
+
+.hited{
+    background-image: url("foto.PNG");
+    background-size: 100% 100%;
+}
+
+
+.salvo{
+background-image: url("foto2.PNG");
+    background-size: 100% 100%;
+}
+
+.target{
+background-color: red ;
+}
+
+
+.destroyer{
+background-color: blue;
+}
+.submarine{
+background-color: black;
+}
+.patrol_boat{
+background-color: orange;
+}
+.battleship{
+background-color: white;
+}
+.carrier{
+background-color: brown;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>LeaderBoared</title>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="css/sweetalert2.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body class="container">
+
+<div id="app">
+    <br>
+    <div v-if="user !='Guest'">
+        <h3 style="margin-left:30%; color:white">Welcome {{user.email}} :</h3>
+        <br>
+        <div class="row">
+            <div class="col"><input type="button" style="margin-left:80%" class="btn btn-success"  @click="createGame()" value="creatGame"></div>
+            <div class="col"><input type="button" class="btn btn-success"  @click="logout()" value="Logout"></div>
+        </div>
+
+    </div>
+
+    <div v-if="user =='Guest'">
+        <label ><h3>Name:</h3></label>
+        <input class="form-control" v-model="username" id="username"type="email" name="username" required>
+        <br>
+        <label><h3>Password:</h3> </label>
+        <input class="form-control" v-model="password" id="password"type="password" name="password" required>
+        <br>
+        <div class="row">
+            <div class="col"><input type="button" style="margin-left:80%" class="btn btn-success" @click="login(1)" value="Login"></div>
+            <div class="col"><input type="button" class="btn btn-success" @click="signup()" value="Sign Up"></div>
+        </div>
+
+    </div>
+    <br><br>
+    <!--
+    <table class="table table-dark">
+        <tr>
+            <th colspan="5"> <h2>Leaderboard</h2></th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Total</td>
+            <td>Won</td>
+            <td>Lost</td>
+            <td>Tied</td>
+        </tr>
+        <tr v-for="y in players" >
+            <td>{{y.userName}}</td>
+            <td>{{y.totalScore}}</td>
+            <td>{{y.wins}}</td>
+            <td>{{y.ties}}</td>
+        </tr>
+    </table>
+    -->
+
+    <br><br>
+
+    <table class="table table-dark">
+        <tr>
+            <th colspan="5"> <h2>Games</h2></th>
+        </tr>
+        <tr>
+        <tr v-for="x in games">
+            <td><span class="tableText">{{x.gamePlayers[0].player.email}}</span></td>
+            <td><span class="tableText">vs.</span></td>
+            <td><span class="tableText">{{x.gamePlayers[1] != null ? x.gamePlayers[1].player.email : "Waiting"}}</span></td>
+            <td v-if="user !='Guest' && (user.email == x.gamePlayers[0].player.email || x.gamePlayers[1] != null && user.email == x.gamePlayers[1].player.email)" ><button class="btn btn-success" @click="enterGame(x.gamePlayers)">Enter the game</button></td>
+            <td v-if="user !='Guest'&& x.gamePlayers.length == 1 && user.email != x.gamePlayers[0].player.email"><button class="btn btn-warning" @click="joinGame(x.id)" >Join Game</button></td>
+        </tr>
+    </table>
+
+    <br><br>
+</div>
+
+<script src="js/popper.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/games.js"></script>
+</body>
+</html>
